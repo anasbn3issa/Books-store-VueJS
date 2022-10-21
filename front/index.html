@@ -25,12 +25,38 @@
   </head>
   <body>
     <div id="app" class="container">
-        <div class="row">
-            <div class="col">
-                {{ message }}
-            </div>
+      <div class="row">
+        <div class="col">
+          {{ message }}
+          <input
+            v-model="variable"
+            type="text"
+            class="form-control"
+            id="message-input"
+          />
+          <hr>
+          <button v-on:click="increment" class="btn btn-outline-secondary">
+            Increment
+          </button>
+          <button v-on:click="decrement" class="btn btn-outline-secondary">
+            Decrement
+          </button>
         </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col">
+              <h1>
+                  {{ counter }}
+              </h1>
+          </div>
+        </div>
+      </div>
+
     </div>
+
+    
 
     <script src="https://cdn.jsdelivr.net/npm/vue@3.2.41/dist/vue.global.min.js"></script>
     <script
@@ -39,15 +65,24 @@
       crossorigin="anonymous"
     ></script>
     <script>
-        let data = {
-            message : "Hello,First Vue App!",
-        }
+      let data = {
+        counter: 0,
+        message: "Hello,First Vue App!",
+      };
 
-        const vm = Vue.createApp({
-            data() {
-                return data;
+      const vm = Vue.createApp({
+        data() {
+          return data;
+        },
+        methods:{
+            increment() {
+                this.counter++;
+            },
+            decrement() {
+                this.counter--;
             }
-        }).mount("#app");
+        }
+      }).mount("#app");
     </script>
   </body>
 </html>
