@@ -19,13 +19,14 @@
         integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ"
         crossorigin="anonymous"
       />
+
 </head>
 <body>
     <div class="container">
         <div class="row">
             <div class="col">
                 <div id="app">
-                    <reg-form></reg-form>
+                    <reg-form :items="items"></reg-form>
                 </div>
             </div>
         </div>
@@ -36,7 +37,13 @@
     <script src="registration-form.js"></script>
 
     <script>
-        const data = {}
+        const data = {
+            items: [
+                {text: 'Red', value: 'red'},
+                {text: 'Green', value: 'green'},
+                {text: 'Blue', value: 'blue'},
+            ]
+        }
 
         const vm = Vue.createApp({
             data() {
