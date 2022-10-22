@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <!-- Latest compiled and minified CSS -->
         <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
-          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
-          crossorigin="anonymous"
-        />
-    
-        <!-- Optional theme -->
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css"
-          integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ"
-          crossorigin="anonymous"
-        />
-    
-        <!-- Latest compiled and minified JavaScript -->
-      </head>
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+        crossorigin="anonymous"
+      />
+  
+      <!-- Optional theme -->
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css"
+        integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ"
+        crossorigin="anonymous"
+      />
+    </head>
     <body>
         <div id="app" class="container">
             <div class="row">
@@ -55,9 +52,11 @@
                 <div class="col">
                     <form class="needs-validation mt-5" novalidate>
 
-                        <text-input label="First Name" type="text" name="first-name"></text-input>
-                        <text-input label="Last Name" type="text" name="last-name"></text-input>
-                        <text-input label="Email" type="email" name="email"></text-input>
+                        <text-input required="required" label="First Name" type="text" name="first-name"></text-input>
+                        <text-input required="true" label="Last Name" type="text" name="last-name"></text-input>
+                        <text-input required="required" label="Email" type="email" name="email"></text-input>
+                        <hr>
+                        <input type="submit" class="btn btn-primary" value="Save">
                     </form>
                 </div>
             </div>
@@ -112,6 +111,34 @@
                 },
                 components: {
                     TextInput,
+                },
+                mounted() {
+                    console.log("Mounted");
+                    (function () {
+                    'use strict'
+
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.querySelectorAll('.needs-validation')
+
+                    // Loop over them and prevent submission
+                    Array.prototype.slice.call(forms)
+                        .forEach(function (form) {
+                        form.addEventListener('submit', function (event) {
+                            if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                            }
+
+                            form.classList.add('was-validated')
+                        }, false)
+                        })
+                    })()
+                },
+                created() {
+                    console.log("Created");
+                },
+                updated() {
+                    console.log("updated");
                 }
             }).mount("#app");
 
